@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dowry Predictor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Dowry Predictor</h1>
+        
+
+        <div class="form-section">
+            <h3>Man's Information</h3>
+            <div class="form-group">
+                <label for="manName">Name:</label>
+                <input type="text" id="manName" name="manName" required>
+            </div>
+            <div class="form-group">
+                <label for="manAge">Age:</label>
+                <input type="number" id="manAge" name="manAge" required>
+            </div>
+            <div class="form-group">
+                <label for="manProfession">Profession:</label>
+                <select id="manProfession">
+                    <option value="">Select Profession</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Lawyer">Lawyer</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Businessman">Businessman</option>
+                    <option value="IT Professional">IT Professional</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="manSalary">Monthly Salary:</label>
+                <input type="number" id="manSalary" name="manSalary" required>
+            </div>
+            <div class="form-group">
+                <label for="manRating">Rate Yourself (1-10):</label>
+                <input type="range" id="manRating" name="manRating" min="1" max="10" value="5">
+                <span id="manRatingValue">5</span>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Woman's Information</h3>
+            <div class="form-group">
+                <label for="womanAge">Age:</label>
+                <input type="number" id="womanAge" name="womanAge" required>
+            </div>
+            <div class="form-group">
+                <label for="womanProfession">Profession:</label>
+                <select id="womanProfession">
+                    <option value="">Select Profession</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Lawyer">Lawyer</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Businessman">Businessman</option>
+                    <option value="IT Professional">IT Professional</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="womanSalary">Monthly Salary:</label>
+                <input type="number" id="womanSalary" name="womanSalary" required>
+            </div>
+        </div>
+
+        <button onclick="calculateDowry()">Calculate</button>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h3>Dowry Prediction</h3>
+            <p id="popupText"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
