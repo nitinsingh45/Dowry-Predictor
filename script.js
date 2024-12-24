@@ -1,6 +1,3 @@
-// script.js
-
-
 const manRating = document.getElementById('manRating');
 const manRatingValue = document.getElementById('manRatingValue');
 manRating.addEventListener('input', () => {
@@ -15,6 +12,15 @@ function calculateDowry() {
     const womanProfession = document.getElementById('womanProfession').value;
 
     let dowry = "";
+
+    // Check if marriage is allowed
+    if (manAge < 21 || womanAge < 18) {
+        const popup = document.getElementById('popup');
+        const popupText = document.getElementById('popupText');
+        popupText.textContent = "Marriage not allowed";
+        popup.style.display = 'block';
+        return; // Stop further execution
+    }
 
     // Dowry calculations based on salary
     if (manSalary <= 25000) {
@@ -37,18 +43,11 @@ function calculateDowry() {
 
     // Age-based adjustments
     if (manAge >= 30 && manSalary <= 50000) {
-        dowry = "Reduced dowry: 1 lakh cash, basic home appliances";
+        dowry = "TVS Raider bike, 5 lakh cash, fridge, TV, bed, washing machine";
     }
 
     if (womanAge >= 30 && manSalary <= 50000) {
-        dowry = "No dowry expected";
-    }
-
-    // Profession-based adjustments
-    if (manProfession === "Doctor" && womanProfession === "Doctor") {
-        dowry = "No dowry expected (professionals)";
-    } else if (manProfession === "Engineer" && womanProfession === "Engineer") {
-        dowry = "Reduced dowry: 5 lakh cash, basic home appliances";
+        dowry = "No dowry get lost";
     }
 
     // Display result in popup
@@ -56,7 +55,44 @@ function calculateDowry() {
     const popupText = document.getElementById('popupText');
     popupText.textContent = dowry;
     popup.style.display = 'block';
+
+    // Splash balloons if dowry is received
+    if (dowry !== "No dowry") {
+        splashBalloons();
+    }
 }
+
+function splashBalloons() {
+    const popup = document.getElementById('popup');
+    const popupRect = popup.getBoundingClientRect();
+    const popupCenterX = popupRect.left + popupRect.width / 2;
+    const popupCenterY = popupRect.top + popupRect.height / 2;
+
+    for (let i = 0; i < 20; i++) {
+        const balloon = document.createElement('div');
+        balloon.className = 'balloon';
+        balloon.style.left = `${popupCenterX + getRandomOffset()}px`;
+        balloon.style.top = `${popupCenterY + getRandomOffset()}px`;
+        balloon.style.backgroundColor = getRandomColor();
+
+        document.body.appendChild(balloon);
+
+        // Remove balloon after animation
+        balloon.addEventListener('animationend', () => {
+            balloon.remove();
+        });
+    }
+}
+
+function getRandomOffset() {
+    return Math.floor(Math.random() * 100 - 50); // Random offset between -50 and 50
+}
+
+function getRandomColor() {
+    const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'orange'];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
 
 function closePopup() {
     const popup = document.getElementById('popup');

@@ -139,3 +139,23 @@ button:hover {
     text-decoration: none;
     cursor: pointer;
 }
+
+.balloon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    animation: rise 2s ease-out forwards;
+}
+
+@keyframes rise {
+    0% {
+        transform: scale(0.5) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) translateY(-150px);
+        opacity: 0;
+    }
+}
